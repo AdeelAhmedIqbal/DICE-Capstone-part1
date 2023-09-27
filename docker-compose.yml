@@ -1,0 +1,21 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile.Server
+    volumes:
+      - servervol:/serverdata
+    expose:
+      - "12345" # Expose the port the server is listening on
+  client:
+    build:
+      context: ./Client
+      dockerfile: Dockerfile.Client
+    volumes:
+      - clientvol:/clientdata
+    depends_on:
+      - server
+volumes:
+  servervol:
+  clientvol:

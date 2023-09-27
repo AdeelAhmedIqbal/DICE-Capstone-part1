@@ -1,0 +1,17 @@
+# Use a base image suitable for your server code
+FROM python:3.8
+
+# Set the working directory
+WORKDIR /app
+
+# Copy your server code into the container
+COPY server.py /app/server.py
+
+# Create a volume and mount it
+VOLUME /serverdata
+
+# Expose the port your server is listening on
+EXPOSE 12345
+
+# Run your server application
+CMD ["python", "server.py"]
